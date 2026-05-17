@@ -1,0 +1,1 @@
+export default function Page(){return <main className="container mt-10"><div className="card p-10 text-center"><div className="text-6xl">✅</div><h1 className="text-4xl font-black mt-4">ĐẶT HÀNG THÀNH CÔNG</h1><p className="mt-3">Cảm ơn bạn đã mua hàng tại GundamStore. Shop sẽ liên hệ xác nhận đơn.</p><a className="btn btn-red mt-6" href="/">VỀ TRANG CHỦ</a></div></main>}

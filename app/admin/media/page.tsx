@@ -1,0 +1,6 @@
+
+'use client';
+import { useEffect, useState } from 'react';
+import Image from 'next/image';
+import ImageUploadField from '@/components/admin/ImageUploadField';
+export default function Page(){ const [assets,setAssets]=useState<any[]>([]); const [url,setUrl]=useState(''); async function load(){setAssets(await (await fetch('/api/admin/media',{cache:'no-store'})).json())} useEffect(()=>{load()},[]); return <div><h1 className="text-3xl font-black">Media Library</h1><p className="text-white/55">Upload, tìm và tái sử dụng ảnh cho sản phẩm/banner/content.</p><div className="mt-6 max-w-xl"><ImageUploadField value={url} onChange={(u)=>{setUrl(u); setTimeout(load,300)}} folder="products" label="Upload media" /></div><div className="mt-6 grid sm:grid-cols-2 lg:grid-cols-4 gap-4">{assets.map(a=><div key={a.id} className="rounded-2xl border border-white/10 bg-white/[0.04] p-3"><div className="relative h-40">{a.mimeType?.startsWith('video/') ? <video src={a.url} className="h-full w-full object-contain" controls /> : <Image src={a.url} alt={a.alt||''} fill className="object-contain" />}</div><p className="mt-2 text-xs text-white/60 break-all">{a.url}</p><button onClick={()=>navigator.clipboard.writeText(a.url)} className="mt-2 rounded-lg bg-cyan-300 px-3 py-2 text-xs font-bold text-black">Copy URL</button></div>)}</div></div> }

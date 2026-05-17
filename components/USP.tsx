@@ -1,0 +1,3 @@
+import {ShieldCheck,Truck,RefreshCcw,Headphones,LockKeyhole} from 'lucide-react';
+const data=[[ShieldCheck,'Hàng chính hãng','100% Authentic'],[Truck,'Free ship','Đơn từ 1.000.000đ'],[RefreshCcw,'Đổi trả 7 ngày','Hỗ trợ nhanh chóng'],[Headphones,'Hỗ trợ 24/7','0901 234 567'],[LockKeyhole,'Thanh toán an toàn','QR Code / COD']];
+export default function USP(){return <div className="container grid grid-cols-2 md:grid-cols-5 gap-3 my-6">{data.map(([Icon,t,d]:any)=><div className="card p-4 flex gap-3 items-center" key={t}><Icon className="text-brand"/><div><b>{t}</b><p className="text-xs text-gray-500">{d}</p></div></div>)}</div>}

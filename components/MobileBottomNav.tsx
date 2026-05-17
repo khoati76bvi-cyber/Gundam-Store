@@ -1,0 +1,2 @@
+'use client';import Link from 'next/link';import {Home,Grid2X2,ShoppingCart,User} from 'lucide-react';import {useCart} from './cart-store';
+export default function MobileBottomNav(){const count=useCart(s=>s.items.reduce((a,b)=>a+b.qty,0));return <nav className="mobile-bottom"><Link href="/"><Home/>Trang chủ</Link><Link href="/category/mg"><Grid2X2/>Danh mục</Link><Link href="/cart" className="relative"><ShoppingCart/>Giỏ hàng{count>0&&<b>{count}</b>}</Link><Link href="/account"><User/>Tài khoản</Link></nav>}

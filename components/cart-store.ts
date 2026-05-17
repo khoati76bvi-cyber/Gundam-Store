@@ -1,0 +1,4 @@
+'use client';import {create} from 'zustand';import {persist} from 'zustand/middleware';import {products} from '@/lib/products';
+type Item={id:number,qty:number};type Store={items:Item[],add:(id:number)=>void,dec:(id:number)=>void,remove:(id:number)=>void,clear:()=>void};
+export const useCart=create<Store>()(persist((set)=>({items:[],add:(id)=>set(s=>{const it=s.items.find(i=>i.id===id);return {items:it?s.items.map(i=>i.id===id?{...i,qty:i.qty+1}:i):[...s.items,{id,qty:1}]}}),dec:(id)=>set(s=>({items:s.items.map(i=>i.id===id?{...i,qty:Math.max(1,i.qty-1)}:i)})),remove:(id)=>set(s=>({items:s.items.filter(i=>i.id!==id)})),clear:()=>set({items:[]})}),{name:'gundam-cart'}));
+export const cartDetails=(items:Item[])=>items.map(i=>({item:i,product:products.find(p=>p.id===i.id)!})).filter(x=>x.product);
