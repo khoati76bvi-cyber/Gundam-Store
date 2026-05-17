@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react"; // 1. Thêm useState để quản lý trạng thái mở search
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import {
@@ -31,6 +32,9 @@ export default function Header() {
   const searchParams = useSearchParams();
   const lang = searchParams.get("lang") === "en" ? "en" : "vi";
 
+  // 2. Quản lý trạng thái mở/đóng của ô search gợi ý
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
+
   const text = {
     vi: {
       authentic: "Chính hãng 100%",
@@ -56,6 +60,14 @@ export default function Header() {
 
   return (
     <>
+      {/* 3. TẤM MÀN CHẶN CLICK: Khi search mở, tấm này phủ lên toàn bộ trang web nhưng nằm dưới bảng gợi ý */}
+      {isSearchOpen && (
+        <div
+          className="fixed inset-0 z-40 bg-black/20 text-white backdrop-blur-sm"
+          onClick={() => setIsSearchOpen(false)}
+        />
+      )}
+
       <div className="sticky top-0 z-50 bg-black/80 text-white text-xs backdrop-blur-xl border-b border-white/10">
         <div className="container flex justify-between py-2">
           <span className="flex gap-2">
@@ -76,8 +88,9 @@ export default function Header() {
         </div>
       </div>
 
-      <header className="bg-[#05070d]/95 text-white sticky top-0 z-50 shadow-xl backdrop-blur border-b border-white/10">
-        <div className="container flex items-center gap-5 py-4">
+      <header className="bg-[#05070d]/95 text-white sticky top-0 z-[9998] shadow-xl backdrop-blur border-b border-white/10">
+        {/* Thêm relative z-50 cho container chứa search để nó nổi lên trên tấm màn chặn */}
+        <div className="container flex items-center gap-5 py-4 relative z-50">
           <Link href={`/?lang=${lang}`} className="text-3xl font-black italic">
             GUNDAM<span className="text-brand">STORE</span>
             <div className="text-[10px] tracking-[.25em] not-italic text-white/60">
@@ -85,8 +98,9 @@ export default function Header() {
             </div>
           </Link>
 
-          <div className="flex-1 hide-mobile">
-            <SmartSearchBox />
+          {/* 4. Truyền hàm kích hoạt trạng thái vào SmartSearchBox */}
+          <div className="flex-1 hide-mobile relative z-50">
+            <SmartSearchBox compact />
           </div>
 
           <Link
@@ -125,7 +139,8 @@ export default function Header() {
           </button>
         </div>
 
-        <nav className="bg-black">
+        {/* Thanh nav lúc này sẽ nằm dưới tấm màn (z-10), chuột không thể click xuyên qua tấm màn để chạm vào chữ PAINT được */}
+        <nav className="bg-black relative z-10">
           <div className="container flex overflow-auto">
             <Link
               href={`/?lang=${lang}`}

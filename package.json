@@ -1,7 +1,7 @@
 {
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "prisma generate && next build",
     "start": "next start",
     "lint": "next lint",
     "db:push": "prisma db push",
@@ -10,10 +10,11 @@
     "setup": "prisma db push && tsx prisma/seed.ts"
   },
   "dependencies": {
-    "@prisma/client": "^5.22.0",
+    "@prisma/client": "^7.8.0",
     "clsx": "latest",
     "lucide-react": "latest",
     "next": "14.2.15",
+    "pg": "^8.20.0",
     "react": "18.3.1",
     "react-dom": "18.3.1",
     "tsx": "4.19.2",
@@ -21,12 +22,16 @@
   },
   "devDependencies": {
     "@types/node": "latest",
+    "@types/pg": "^8.20.0",
     "@types/react": "latest",
     "@types/react-dom": "latest",
     "autoprefixer": "^10.5.0",
     "postcss": "^8.5.14",
-    "prisma": "^5.22.0",
+    "prisma": "^7.8.0",
     "tailwindcss": "^3.4.17",
     "typescript": "latest"
+  },
+  "prisma": {
+    "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts"
   }
 }
