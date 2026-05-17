@@ -1,6 +1,6 @@
 
 import { NextResponse } from 'next/server';
-import { prisma } from '@/lib/db';
+import prisma from '@/lib/prisma';
 
 export async function GET() {
   const data = await prisma.banner.findMany({ orderBy: { sortOrder: 'asc' } });
