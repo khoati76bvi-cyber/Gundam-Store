@@ -1,4 +1,4 @@
-import './globals.css';
+import './global.css';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import MobileBottomNav from '@/components/MobileBottomNav';
@@ -12,7 +12,7 @@ export const metadata = { title: 'GundamStore Vietnam', description: 'Premium Gu
 async function getSettings() {
   try {
     const rows = await prisma.setting.findMany();
-    return Object.fromEntries(rows.map(r => [r.key, r.value]));
+    return Object.fromEntries(rows.map((r: any) => [r.key, r.value]));
   } catch { return {}; }
 }
 
