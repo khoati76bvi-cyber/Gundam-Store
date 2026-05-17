@@ -1,5 +1,6 @@
-import { NextResponse } from 'next/server';
-import { prisma } from '@/lib/db';
+import prisma from '@/lib/prisma';
+import { NextResponse } from "next/server";
+export const dynamic = 'force-dynamic';
 
 export async function GET() {
   const rows = await prisma.setting.findMany({ where: { OR: [{ key: { startsWith: 'theme.' } }, { key: { startsWith: 'section.' } }, { key: { startsWith: 'layout.' } }] } });

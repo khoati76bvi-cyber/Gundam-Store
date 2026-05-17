@@ -1,6 +1,7 @@
 
 import { NextResponse } from 'next/server';
-import { prisma } from '@/lib/db';
+import prisma from '@/lib/prisma';
+export const dynamic = 'force-dynamic';
 export async function POST(req: Request) {
   const { productId, type, quantity, note } = await req.json();
   const qty = Number(quantity || 0);

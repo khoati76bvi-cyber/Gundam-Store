@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { searchProducts } from '@/lib/search';
-import { prisma } from '@/lib/db';
+import prisma from '@/lib/prisma';
+export const dynamic = 'force-dynamic';
 
 export const revalidate = 60;
 export async function GET(req: NextRequest) {
@@ -17,8 +18,8 @@ export async function GET(req: NextRequest) {
   });
   const keyword = (sp.get('q') || '').toLowerCase().trim();
   if (keyword) {
-    prisma.searchInsight.create({ data: { keyword, resultCount: result.total || 0 } }).catch(() => {});
-    prisma.analyticsEvent.create({ data: { sessionId: req.headers.get('x-gds-session') || 'search-api', type: 'SEARCH', keyword, value: result.total || 0, metadata: JSON.stringify({ category: sp.get('category') || 'all', grade: sp.get('grade') || 'all' }) } }).catch(() => {});
+    prisma.searchInsight.create({ data: { keyword, resultCount: result.total || 0 } }).catch(() => { });
+    prisma.analyticsEvent.create({ data: { sessionId: req.headers.get('x-gds-session') || 'search-api', type: 'SEARCH', keyword, value: result.total || 0, metadata: JSON.stringify({ category: sp.get('category') || 'all', grade: sp.get('grade') || 'all' }) } }).catch(() => { });
   }
   return NextResponse.json(result, {
     headers: {

@@ -1,10 +1,12 @@
-import { NextResponse } from 'next/server';
+
 import { writeFile, mkdir } from 'fs/promises';
 import path from 'path';
-import { prisma } from '@/lib/db';
+import prisma from '@/lib/prisma';
+import { NextResponse } from "next/server";
+export const dynamic = 'force-dynamic';
 
 export const runtime = 'nodejs';
-const allowed = ['image/','video/mp4','video/webm'];
+const allowed = ['image/', 'video/mp4', 'video/webm'];
 function safeName(name: string) { return name.toLowerCase().replace(/[^a-z0-9.]+/g, '-').replace(/-+/g, '-'); }
 
 export async function POST(req: Request) {
