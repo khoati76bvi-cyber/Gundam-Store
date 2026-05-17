@@ -21,7 +21,7 @@ async function getHomeData() {
     ]);
 
     return {
-      settings: Object.fromEntries(settingsRows.map((s) => [s.key, s.value])),
+      settings: Object.fromEntries(settingsRows.map((s: any) => [s.key, s.value])),
       banners,
     };
   } catch {

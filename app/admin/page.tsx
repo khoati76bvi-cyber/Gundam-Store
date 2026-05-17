@@ -11,8 +11,8 @@ export default async function AdminDashboard() {
     prisma.banner.count(),
   ]);
 
-  const revenue = orders.reduce((s, o) => s + o.total, 0);
-  const pendingOrders = orders.filter((o) => o.status === "NEW").length;
+  const revenue = orders.reduce((s: number, o: any) => s + o.total, 0);
+  const pendingOrders = orders.filter((o: any) => o.status === "NEW").length;
 
   const modules = [
     {

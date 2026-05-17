@@ -3,7 +3,7 @@ import { prisma } from '@/lib/db';
 
 export async function GET() {
   const rows = await prisma.setting.findMany({ where: { OR: [{ key: { startsWith: 'theme.' } }, { key: { startsWith: 'section.' } }, { key: { startsWith: 'layout.' } }] } });
-  return NextResponse.json(Object.fromEntries(rows.map(r => [r.key, r.value])));
+  return NextResponse.json(Object.fromEntries(rows.map((r: any) => [r.key, r.value])));
 }
 
 export async function PUT(req: Request) {
