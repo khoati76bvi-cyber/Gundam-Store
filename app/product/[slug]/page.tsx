@@ -32,7 +32,7 @@ import { products, formatPrice } from '@/lib/products';
 import { useCart } from '@/components/cart-store';
 import ProductCard from '@/components/ProductCard';
 import { trackEvent } from '@/components/analytics/AnalyticsTracker';
-
+export const dynamic = 'force-dynamic';
 type TabKey = 'description' | 'specs' | 'reviews' | 'guide' | 'qa';
 
 const variants = ['MGEX', 'MG', 'RG', 'HG'];

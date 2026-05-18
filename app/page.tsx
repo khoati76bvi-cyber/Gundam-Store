@@ -6,10 +6,10 @@ import CommunityHub from "@/components/CommunityHub";
 import AdvancedFilterPreview from "@/components/AdvancedFilterPreview";
 import AdvancedBannerSlider from "@/components/AdvancedBannerSlider";
 import { products } from "@/lib/products";
-import { prisma } from "@/lib/db";
+import prisma from '@/lib/prisma';
 import { sectionEnabled } from "@/components/ThemeProvider";
 import { dict } from "@/lib/i18n";
-
+export const dynamic = 'force-dynamic';
 async function getHomeData() {
   try {
     const [settingsRows, banners] = await Promise.all([

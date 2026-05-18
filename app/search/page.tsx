@@ -2,7 +2,7 @@ import ProductCard from '@/components/ProductCard';
 import SmartSearchBox from '@/components/search/SmartSearchBox';
 import { searchProducts } from '@/lib/search';
 import Link from 'next/link';
-
+export const dynamic = 'force-dynamic';
 export const revalidate = 60;
 
 export default function SearchPage({ searchParams }: { searchParams: Record<string, string | undefined> }) {
