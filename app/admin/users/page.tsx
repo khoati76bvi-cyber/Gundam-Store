@@ -1,7 +1,7 @@
 import prisma from '@/lib/prisma';
 import CreateUserForm from "@/components/admin/CreateUserForm";
 import UserActions from "@/components/admin/UserActions";
-
+export const dynamic = 'force-dynamic';
 export default async function AdminUsersPage() {
   const users = await prisma.user.findMany({
     orderBy: {
