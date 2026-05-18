@@ -1,6 +1,6 @@
-import { prisma } from '@/lib/db';
+import prisma from '@/lib/prisma';
 import { formatVND } from '@/lib/format';
-
+export const dynamic = 'force-dynamic';
 function Card({ title, value, hint }: { title: string; value: any; hint: string }) {
   return <div className="rounded-3xl border border-white/10 bg-white/[.04] p-5">
     <div className="text-white/55 text-sm">{title}</div>
