@@ -1,8 +1,8 @@
 import Link from "next/link";
-import { prisma } from "@/lib/db";
+import prisma from '@/lib/prisma';
 import { AdminCard } from "@/components/admin/AdminCard";
 import { formatVND } from "@/lib/format";
-
+export const dynamic = 'force-dynamic';
 export default async function AdminDashboard() {
   const [products, orders, customers, banners] = await Promise.all([
     prisma.product.count(),

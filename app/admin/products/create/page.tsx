@@ -1,5 +1,5 @@
 import CreateProductForm from "@/components/admin/CreateProductForm";
-
+export const dynamic = 'force-dynamic';
 export default function CreateProductPage() {
   return (
     <div>

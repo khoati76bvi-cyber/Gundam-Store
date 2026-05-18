@@ -1,3 +1,4 @@
 
 import AdminCrud from '@/components/admin/AdminCrud';
+export const dynamic = 'force-dynamic';
 export default function Page() { return <AdminCrud title="Content CMS" endpoint="/api/admin/contents" fields={[{ key: 'slug', label: 'Slug' }, { key: 'title', label: 'Title' }, { key: 'type', label: 'Type', type: 'select', options: ['BLOG', 'GUIDE', 'NEWS', 'PAGE'] }, { key: 'coverImage', label: 'Cover Image URL' }, { key: 'excerpt', label: 'Excerpt', type: 'textarea' }, { key: 'body', label: 'Body / Markdown', type: 'textarea' }, { key: 'status', label: 'Status', type: 'select', options: ['DRAFT', 'PUBLISHED'] }, { key: 'seoTitle', label: 'SEO Title' }, { key: 'seoDesc', label: 'SEO Description', type: 'textarea' }]} columns={['id', 'title', 'type', 'status', 'updatedAt']} initial={{ status: 'DRAFT', type: 'BLOG' }} /> }

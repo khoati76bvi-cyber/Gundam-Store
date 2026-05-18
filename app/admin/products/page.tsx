@@ -1,8 +1,8 @@
 import Link from "next/link";
 import Image from "next/image";
-import { prisma } from "@/lib/db";
+import prisma from '@/lib/prisma';
 import ProductActions from "@/components/admin/ProductActions";
-
+export const dynamic = 'force-dynamic';
 export default async function AdminProductsPage() {
   const products = await prisma.product.findMany({
     orderBy: {

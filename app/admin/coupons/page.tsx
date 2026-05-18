@@ -1,5 +1,5 @@
 import AdminCrud from '@/components/admin/AdminCrud';
-
+export const dynamic = 'force-dynamic';
 export default function Page() {
   return (
     <AdminCrud

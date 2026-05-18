@@ -1,4 +1,4 @@
-import { prisma } from "@/lib/db";
+import prisma from '@/lib/prisma';
 import CreateUserForm from "@/components/admin/CreateUserForm";
 import UserActions from "@/components/admin/UserActions";
 
