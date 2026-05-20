@@ -11,13 +11,19 @@ import { sectionEnabled } from "@/components/ThemeProvider";
 import { dict } from "@/lib/i18n";
 export const dynamic = 'force-dynamic';
 async function getHomeData() {
+  // 🌟 LỚP BẢO VỆ 1: Nếu khâu build của Vercel chưa nạp kịp biến môi trường, trả về giá trị rỗng ngay để pass build
+  if (!process.env.DATABASE_URL) {
+    return { settings: {}, banners: [] };
+  }
+
   try {
+    // 🌟 LỚP BẢO VỆ 2: Thêm .catch(() => []) vào từng lệnh gọi để tránh gây treo tiến trình build nếu DB lag
     const [settingsRows, banners] = await Promise.all([
-      prisma.setting.findMany(),
+      prisma.setting.findMany().catch(() => []),
       prisma.banner.findMany({
         where: { active: true, position: "HOME_HERO" },
         orderBy: { sortOrder: "asc" },
-      }),
+      }).catch(() => []),
     ]);
 
     return {
@@ -25,7 +31,7 @@ async function getHomeData() {
       banners,
     };
   } catch {
-    return { settings: {}, banners: [] as any[] };
+    return { settings: {}, banners: [] };
   }
 }
 
